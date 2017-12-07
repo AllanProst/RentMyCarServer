@@ -6,20 +6,20 @@ var mongoose = require("mongoose");
 var options = { server: { socketOptions: { connectTimeoutMS: 30000 } } };
 var bodyParser = require("body-parser");
 
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 ///***---MONGODB---***\\\
 var customerschema = mongoose.Schema({
-  posterpath: String,
-  title: String,
-  overview: String
+  modele: String,
+  marque: String,
+  ville: String,
+  places: String
 });
 
-
-var customermodel = mongoose.model("moviezfav", customerschema);
+var customermodel = mongoose.model("customers", customerschema);
 
 mongoose.connect(
   "mongodb://drivy:drivy@ds129926.mlab.com:29926/totocar",
@@ -37,9 +37,17 @@ app.get("/", function(req, res) {
 
 app.post("/signup", function(req, res) {
   console.log(req.body);
+  var newcustomer = new customermodel({
+    modele: req.body.modele,
+    marque: req.body.marque,
+    ville: req.body.marque,
+    places: req.body.places
+  });
+  newcustomer.save(function(error, customers) {
+    ///on peut mettre une fonction de call-back ici
+  });
   res.redirect("/");
 });
-
 
 ///***---LISTEN---***\\\
 var port = process.env.PORT || 8080;
