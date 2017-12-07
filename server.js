@@ -45,8 +45,8 @@ app.post("/signup", upload.array(), function(req, res) {
   request(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.city}&key=AIzaSyDZFJG4GhBshMDF2oz93IfAkf8oYHIx6c4`, function(error, response, body){
     var retourapi = JSON.parse(body);
     console.log(retourapi);
-    lat = body.results[0].geometry.location.lat;
-    lng = body.results[0].geometry.location.lng;
+    lat = retourapi.results[0].geometry.location.lat;
+    lng = retourapi.results[0].geometry.location.lng;
     console.log(req.body);
     var newcustomer = new customermodel({
       modele: req.body.modele,
@@ -56,6 +56,7 @@ app.post("/signup", upload.array(), function(req, res) {
       latitude: lat,
       longitude: lng
     });
+    console.log(newcustomer);
     newcustomer.save(function(error, customers) {
       ///on peut mettre une fonction de call-back ici
     });
