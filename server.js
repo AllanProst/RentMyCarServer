@@ -47,7 +47,7 @@ app.post("/signup", upload.array(), function(req, res) {
     var newcustomer = new customermodel({
       modele: req.body.modele,
       marque: req.body.marque,
-      ville: req.body.marque,
+      ville: req.body.ville,
       places: req.body.places,
       latitude: lat,
       longitude: lng
