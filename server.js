@@ -38,7 +38,7 @@ app.get("/", function(req, res) {
   res.render("home");
 });
 
-app.post("/signup", function(req, res) {
+app.post("/signup", upload.array(), function(req, res) {
   console.log(req.body);
   var newcustomer = new customermodel({
     modele: req.body.modele,
