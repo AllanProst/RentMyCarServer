@@ -40,7 +40,7 @@ app.get("/", function(req, res) {
 });
 
 app.post("/signup", upload.array(), function(req, res) {
-  request(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.city}&key=AIzaSyDZFJG4GhBshMDF2oz93IfAkf8oYHIx6c4`, function(error, response, body){
+  request(`https://maps.googleapis.com/maps/api/geocode/json?address=${req.body.ville}&key=AIzaSyDZFJG4GhBshMDF2oz93IfAkf8oYHIx6c4`, function(error, response, body){
     var retourapi = JSON.parse(body);
     var lat = retourapi.results[0].geometry.location.lat;
     var lng = retourapi.results[0].geometry.location.lng;
