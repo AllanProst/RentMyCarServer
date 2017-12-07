@@ -5,6 +5,9 @@ var app = express();
 var mongoose = require("mongoose");
 var options = { server: { socketOptions: { connectTimeoutMS: 30000 } } };
 var bodyParser = require("body-parser");
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
