@@ -41,7 +41,7 @@ app.get("/", function(req, res) {
 
 app.get("/getmakers", function(req, res) {
     customermodel.find(function (err, markers) {
-    res.send(markers);
+    res.json(markers);
   })
 });
 
