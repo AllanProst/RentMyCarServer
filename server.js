@@ -70,7 +70,7 @@ app.post("/signup", function(req, res) {
 });
 
 app.post("/saveimage", function(req, res) {
-  console.log(req.files.name);
+  console.log(req.files.imgcar)
   if (!req.files)
   return res.status(400).send('No files were uploaded.');
 
@@ -80,7 +80,7 @@ app.post("/saveimage", function(req, res) {
 // Use the mv() method to place the file somewhere on your server
 returnedimage.mv(`./public/images/test.jpg`, function(err) {
       if (err)
-    return res.status(500).send(err);
+    return res.status(500).send("PAS REUSSI A ENREGISTRER", err);
 
   res.send('File uploaded!');
   });
