@@ -70,19 +70,19 @@ app.post("/signup", function(req, res) {
 });
 
 app.post("/saveimage", function(req, res) {
-  if (!req.files){
+  if (!req.files)
   return res.status(400).send('No files were uploaded.');
-  }
-  else {
-    var returnedimage = req.files.imgcar;
+
+      // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+      let sampleFile = req.files.sampleFile;
+
 // Use the mv() method to place the file somewhere on your server
-  returnedimage.mv('/public/test.jpg', function(err) {
-      if (err){
-        return res.status(500).send(err);
-          res.send('File uploaded!');
-      }
-    });
-  }
+    sampleFile.mv('/public/images/test.jpg', function(err) {
+      if (err)
+    return res.status(500).send(err);
+
+  res.send('File uploaded!');
+  });
 });
 
 ///***---LISTEN---***\\\
