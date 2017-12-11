@@ -5,21 +5,10 @@ var app = express();
 //// Mongoose
 var mongoose = require("mongoose");
 var options = { server: { socketOptions: { connectTimeoutMS: 30000 } } };
+var fileUpload = require('express-fileupload');
 //// BodyParser (doublon de multer)
 var bodyParser = require("body-parser");
-//// Module pour comprendre les envois "Multipart Formdata"
-var multer  = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images')
-  },
-  filename: function (req, file, cb) {
-    cb(null, "image.jpg")
-  }
-})
-var upload = multer({ storage: storage });
-
-
+//// Module pour comprendre les envois "Multipart Formdata
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -82,10 +71,18 @@ app.post("/signup", upload.array(), function(req, res) {
   });
 });
 
-app.post("/saveimage", upload.single("imgcar"), function(req, res) {
-    console.log(req.file);
-    console.log(req.body)
-    res.send("ok");
+app.post("/saveimage", function(req, res) {
+  if (!req.files)
+  return res.status(400).send('No files were uploaded.');
+
+let sampleFile = req.files.imgcar;
+
+// Use the mv() method to place the file somewhere on your server
+imgcar.mv(`/public/${req.body.name}.jpg`, function(err) {
+      if (err)
+        return res.status(500).send(err);
+      res.send('File uploaded!');
+    });
 });
 
 ///***---LISTEN---***\\\
