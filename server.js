@@ -9,7 +9,17 @@ var options = { server: { socketOptions: { connectTimeoutMS: 30000 } } };
 var bodyParser = require("body-parser");
 //// Module pour comprendre les envois "Multipart Formdata"
 var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, "image.jpg")
+  }
+})
+var upload = multer({ storage: storage });
+
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
