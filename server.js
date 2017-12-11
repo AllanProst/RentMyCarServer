@@ -70,7 +70,7 @@ app.post("/signup", upload.array(), function(req, res) {
 });
 
 app.post("/saveimage", upload.single(), function(req, res) {
-    console.log("");
+    console.log(imgcar);
     res.redirect("/");
 });
 
