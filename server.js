@@ -69,7 +69,7 @@ app.post("/signup", function(req, res) {
         console.log(customers);
         console.log(customers._id);
         ///on peut mettre une fonction de call-back ici
-        res.json(customers._id);
+        res.send(customers._id);
       });
     }
   );
