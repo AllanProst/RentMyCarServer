@@ -2,9 +2,12 @@
 var express = require("express");
 var request = require("request");
 var app = express();
+//// Mongoose
 var mongoose = require("mongoose");
 var options = { server: { socketOptions: { connectTimeoutMS: 30000 } } };
+//// BodyParser (doublon de multer)
 var bodyParser = require("body-parser");
+//// Module pour comprendre les envois "Multipart Formdata"
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
@@ -41,7 +44,6 @@ app.get("/", function(req, res) {
 
 app.get("/getmarkers", function(req, res) {
     customermodel.find(function (err, markers) {
-    console.log(markers);
     res.json(markers);
   })
 });
@@ -65,6 +67,11 @@ app.post("/signup", upload.array(), function(req, res) {
     });
     res.redirect("/");
   });
+});
+
+app.post("/saveimage", upload.single(), function(req, res) {
+    console.log("");
+    res.redirect("/");
 });
 
 ///***---LISTEN---***\\\
