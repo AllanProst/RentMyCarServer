@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 //Images sont accessibles depuis l'exterieur
-app.use(express.static("upload"));
+app.use(express.static("uploads"));
 
 
 ///***---MONGODB---***\\\
