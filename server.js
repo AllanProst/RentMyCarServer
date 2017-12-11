@@ -65,13 +65,12 @@ app.post("/signup", function(req, res) {
         latitude: lat,
         longitude: lng
       });
-      console.log(newcustomer);
       newcustomer.save(function(error, customers) {
         console.log(customers);
+        console.log(customers._id);
         ///on peut mettre une fonction de call-back ici
-        res.send(customers._id);
+        res.json({id : customers._id});
       });
-      res.redirect("/");
     }
   );
 });
