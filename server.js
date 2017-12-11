@@ -70,7 +70,7 @@ app.post("/signup", function(req, res) {
 });
 
 app.post("/saveimage", function(req, res) {
-  console.log(req.body);
+  console.log(req.body.name);
   if (!req.files)
   return res.status(400).send('No files were uploaded.');
 
