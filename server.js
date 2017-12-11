@@ -15,11 +15,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+//Images sont accessibles depuis l'exterieur
+app.use(express.static("upload"));
+
 
 ///***---MONGODB---***\\\
 var customerschema = mongoose.Schema({
