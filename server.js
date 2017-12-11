@@ -74,14 +74,14 @@ app.post("/saveimage", function(req, res) {
   return res.status(400).send('No files were uploaded.');
   }
   else {
-    let cacaboudin = req.files.imgcar;
-
+    var returnedimage = req.files.imgcar;
 // Use the mv() method to place the file somewhere on your server
-cacaboudin.mv('/public/test.jpg', function(err) {
-          if (err)
-            return res.status(500).send(err);
+  returnedimage.mv('/public/test.jpg', function(err) {
+      if (err){
+        return res.status(500).send(err);
           res.send('File uploaded!');
-        });
+      }
+    });
   }
 });
 
