@@ -76,6 +76,7 @@ app.post("/signup", upload.array(), function(req, res) {
 
 app.post("/saveimage", upload.single("imgcar"), function(req, res) {
     console.log(req.file);
+    console.log(req.body)
     res.send("ok");
 });
 
