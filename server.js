@@ -70,7 +70,7 @@ app.post("/signup", function(req, res) {
 });
 
 app.post("/saveimage", function(req, res) {
-  console.log(req.body.name);
+  console.log(req.files);
   if (!req.files)
   return res.status(400).send('No files were uploaded.');
 
@@ -78,7 +78,7 @@ app.post("/saveimage", function(req, res) {
       let sampleFile = req.files.imgcar;
 
 // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv(`./public/images/${req.body.name}.jpg`, function(err) {
+    sampleFile.mv(`./public/images/test.jpg`, function(err) {
       if (err)
     return res.status(500).send(err);
 
