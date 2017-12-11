@@ -67,6 +67,7 @@ app.post("/signup", function(req, res) {
       });
       console.log(newcustomer);
       newcustomer.save(function(error, customers) {
+        console.log(customers._id);
         ///on peut mettre une fonction de call-back ici
         res.json({id : customers._id});
       });
