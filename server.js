@@ -75,6 +75,7 @@ app.post("/signup", function(req, res) {
 
 app.post("/saveimage", function(req, res) {
   console.log("on est dans saveimage");
+  console.log(req.files);
   if (!req.files) return res.status(400).send("No files were uploaded.");
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let returnedimage = req.files.imgcar;
