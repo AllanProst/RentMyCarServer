@@ -44,6 +44,7 @@ app.get("/", function(req, res) {
 
 app.get("/getmarkers", function(req, res) {
   customermodel.find(function(err, markers) {
+    console.log(markers);
     res.json(markers);
   });
 });
@@ -66,8 +67,6 @@ app.post("/signup", function(req, res) {
         longitude: lng
       });
       newcustomer.save(function(error, customers) {
-        console.log(customers);
-        console.log(customers._id);
         ///on peut mettre une fonction de call-back ici
         res.send(customers._id);
       });
@@ -80,7 +79,7 @@ app.post("/saveimage", function(req, res) {
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
   let returnedimage = req.files.imgcar;
   // Use the mv() method to place the file somewhere on your server
-  returnedimage.mv("./public/images/test.jpg", function(err) {
+  returnedimage.mv(`./public/images/${req.files.imgcar.name}.jpg`, function(err) {
     if (err) return res.status(500).send("PAS REUSSI A ENREGISTRER", err);
     res.send("File uploaded!");
   });
