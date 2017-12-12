@@ -44,7 +44,6 @@ app.get("/", function(req, res) {
 
 app.get("/getmarkers", function(req, res) {
   customermodel.find(function(err, markers) {
-    console.log(markers);
     res.json(markers);
   });
 });
